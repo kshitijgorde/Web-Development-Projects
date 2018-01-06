@@ -6,42 +6,96 @@
     <title>Dog Lover's Club</title>
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<base href = "https://kshitijgorde.github.io/Web-Development-Projects/" />
   </head>
-
   <body>
-    <style>
-    .navbar-brand {
-      text-align: center;
-      width: 100%;
-      }
-
-    </style>
 
     <nav class="navbar navbar-inverse">
-      <div  class="container-fluid">
-        <a href="#" class="navbar-brand">Welcome to my portfolio of Web development. Click on the project you wish you view!</a>
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand">Welcome to Dog Lover's Club!</a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a  href="sign_in.html">Sign In</a>
+        </li>
+      </ul>
       </div>
+
+      </div>
+
     </nav>
+  <div class="container">
+      <div class="jumbotron">
+        <h1>Dog Lover's Club!</h1>
+        <p>I am a huge Dog enthusiast and this project is dedicated to all dog lovers!</p>
+        <p>If anyone is new to Bootstrap and wants to learn how I've created this project, follow the steps below</p>
+        <p>Just follow the instructions to re-create these webpages</p>
 
-    <div class="container">
+        <ol>
+          <li>Create a general landing page with Jumbotron</li>
+          <li>Next create a NavBar on the Page that links to another html file</li>
+          <li>Add two paragrahs of lorem-ipsum below the jumbotron</li>
+          <li>Next use the Grid system to add in thumbnail pictures of Dogs. Source: https://stocksnap.io/search/dogs You will need to use the thumbnail class for this. </li>
+          <p>Here are the image links. Make sure you download them. I've hosted mine on AWS S3</p>
+          <ul>
+            <li> <a href="https://stocksnap.io/photo/I3MCVCWP5V">One </a> </li>
+            <li> <a href="https://stocksnap.io/photo/HRVE3RBCEF">Two</a> </li>
+            <li> <a href="https://stocksnap.io/photo/63348D1909">Three </a> </li>
+            <li> <a href="https://stocksnap.io/photo/27CFY256HO">Four</a> </li>
+            <li> <a href="https://stocksnap.io/photo/LUTR98Q9NA">Five</a> </li>
+            <li> <a href="https://stocksnap.io/photo/1V6C1OMMLM">Six</a> </li>
 
-        <div class="row">
-          <div class="col-lg-4 col-xs-6 thumbnail">
-            <a href="Dog_Lover_Project/docs/">
-              <img src="https://s3.amazonaws.com/images-dog-kshitijgorde.com/do.jpg"></a>
-              <div class="caption">
-                <h3>Dog Lover's Club!</h3>
-          </div>
+          </ul>
+          <li>Next make sure that at the largest settings you have 3 columns of pictures. On the smallest screen settings you should have 2 columns. Its up to you where you want to change.</li>
+          <li>Next create another html file for the sign up page.</li>
+          <li>Create a Form on this Sign Up page with Email, Password, and a Check Box</li>
+        </ol>
+        <p>That's it. Feel free to play around with this project and style it more to your liking.
+          The main focuses of this project are the uses of NavBar, Jumbotron, Form, Container, and the Grid System.</p>
+      </div>
+
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <h2> Check out these lovely pictures of man's best friend!</h2>
+
+      <div class="row">
+        <div class="col-lg-4 col-xs-6 thumbnail">
+            <img src="https://s3.amazonaws.com/images-dog-kshitijgorde.com/do.jpg">
         </div>
-    </div>
+        <div class="col-lg-4 col-xs-6 thumbnail">
+            <img src="https://s3.amazonaws.com/images-dog-kshitijgorde.com/2.jpg">
+        </div>
+
+        <div class="col-lg-4 col-xs-6 thumbnail">
+            <img src="https://s3.amazonaws.com/images-dog-kshitijgorde.com/3.jpg">
+        </div>
+
+        <div class="col-lg-4 col-xs-6 thumbnail">
+            <img src="https://s3.amazonaws.com/images-dog-kshitijgorde.com/4.jpg">
+        </div>
+
+        <div class="col-lg-4 col-xs-6 thumbnail">
+            <img src="https://s3.amazonaws.com/images-dog-kshitijgorde.com/5.jpg">
+        </div>
+
+        <div class="col-lg-4 col-xs-6 thumbnail">
+            <img src="https://s3.amazonaws.com/images-dog-kshitijgorde.com/6.jpg">
+        </div>
+
+      </div>
+
+
+
+
+
+  </div>
 
   </body>
-
 </html>
