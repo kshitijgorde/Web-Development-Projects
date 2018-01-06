@@ -5,3 +5,6 @@ I've started with Bootstrap and plan to add many more changes to it. Later, I wi
 someone who wants to get into Web development.
 I've figured, learning by making projects is the most effective way of learning. I'll be hosting my resources (images, files etc)
 on AWS S3, but feel free to use the links!
+
+These projects will be hosted on https://kshitijgorde.github.io/Web-Development-Projects/
+and will be updated as and when I make progress to showcase my latest work. 
