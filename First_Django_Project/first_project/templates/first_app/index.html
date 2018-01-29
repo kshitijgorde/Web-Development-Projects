@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hi</title>
+    <link rel="stylesheet" href="{% static "css/mystyles.css"%}">
+  </head>
+  <body>
+    <h1> Look at this handsome!</h1>
+    <div style="text-align: center"><img "align=center" src="{% static "images/1.jpg"%}" alt="There's some handsome guy here"></div>
+
+    {% if access_records %}
+<div class="myDjango">
+
+    <table>
+      <thead>
+        <th>Website Name</th>
+        <th>Date Accessed</th>
+      </thead>
+      {% for acc in access_records %}
+      <tr>
+        <td>{{acc.name}}</td>
+        <td>{{acc.date}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+      <p>No AccessRecords. Check connection & Try again!</p>
+    {% endif %}
+
+    </div>
+  </body>
+</html>

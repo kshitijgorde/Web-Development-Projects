@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    {% if task_list %}
+{% extends "todoapp/base.html" %}
 
-          <ul>
-            {% for task in task_list %}
-            <li> <a href="{% url 'todoapp:detail' task.id %}">{{task.task_name}}</a> </li>
-            {% endfor %}
-          </ul>
 
-    {% else %}
-      <h1>No Tasks in your list!</h1>
-    {% endif %}
-  </body>
-</html>
+  {% block content %}
+  <div class="container">
+    <div class="container-bg">
+        {% if user.is_authenticated %}
+            {% if task_list %}
+                    <ul>
+                      {% for task in task_list %}
+                      <li> <a href="{% url 'todoapp:detail' task.id %}">{{task.task_name}}</a> </li>
+                      {% endfor %}
+                    </ul>
+
+            {% else %}
+                <h1>No Tasks in your list!</h1>
+            {% endif %}
+        {% else %}
+        <h1>Thanks for choosing Kshitij's ToDoApp. Please Login or SignUp to Continue</h1>
+        {% endif %}
+      </div>
+    </div>
+  {% endblock %}
 
 
 

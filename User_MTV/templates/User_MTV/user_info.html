@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Information</title>
+  </head>
+  <body>
+    <h2>User Information</h2>
+    {% if users_info %}
+
+    {% for entry in users_info %}
+
+    <p><strong>User Info</strong></p>
+    <p>First Name: {{ entry.first_name }}</p>
+    <p>Last Name: {{ entry.last_name }}</p>
+    <p>Email: {{ entry.email }}</p>
+
+    {% endfor %}
+
+    {% else %}
+    <p>Some Error while connecting to the DB!</p>
+
+    {% endif %}
+
+
+  </body>
+</html>
