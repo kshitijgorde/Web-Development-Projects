@@ -1,27 +1,30 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Task
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 # Create your views here.
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class IndexView(TemplateView):
-    task_list = Task.objects.all()
+from django.core.urlresolvers import reverse_lazy
+from django.http import Http404
+from django.views import generic
+
+from braces.views import SelectRelatedMixin
+
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+class IndexView(ListView):
+    model = Task
     template_name = 'todoapp/index.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context['task_list'] = Task.objects.all()
-        return context
+    
+
+
 
 
 class DetailedTaskView(DetailView):
     model = Task
 
-
-
-def index(request):
-    task_list = Task.objects.all()
-    return HttpResponse(task_list)
-
-def detail(request, task_id):
-    return HttpResponse("This is for %s" % task_id)
