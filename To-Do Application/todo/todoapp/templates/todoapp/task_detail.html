@@ -1,2 +1,30 @@
-{{ task.task_name }}<br>
-{{ task.task_priority}}
+{% extends "todoapp/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+      <div class="card" style="width: 18rem;">
+          <div class="card-body">
+              <h5 class="card-title">{{ task.task_name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ task.task_priority}}</h6>
+              <p class="card-text">Are you done with this task?</p>
+              <!-- <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a> -->
+              <div class="media-footer">
+
+          				<a href="{% url 'todoapp:delete' pk=task.pk %}" title="delete" class="btn btn-simple">
+          					<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+          					<span class="text-danger icon-label">Delete</span>
+          				</a>
+
+          		</div>
+          </div>
+      </div>
+
+
+
+
+</div>
+
+{% endblock %}

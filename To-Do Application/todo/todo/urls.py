@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
+from todoapp import views
 urlpatterns = [
+    url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^todoapp/', include('todoapp.urls')),
     url(r"^accounts/", include("accounts.urls", namespace="accounts")),

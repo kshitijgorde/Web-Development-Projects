@@ -20,12 +20,8 @@
         {% if user.is_authenticated %}
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="{% url 'todoapp:create' %}">New Task</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-
         <li class="nav-item">
           <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
         </li>
