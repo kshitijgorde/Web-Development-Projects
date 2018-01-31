@@ -1,0 +1,24 @@
+#background{
+  background-image: url('../back.jpg');
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 0.75;
+}
+
+.container-bg{
+  margin-top: 8%;
+  color: #efefef;
+}
+
+.form-task{
+  color: #efefef;
+}
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+
