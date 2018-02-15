@@ -1,0 +1,34 @@
+{% extends "stocksapp/base.html" %}
+
+{% block content %}
+<br>
+<br>
+
+<div class="container">
+  <select class="form-control form-control-lg ticker" name="" id='companytickers'>
+      <option  value="invalid">Select a company</option>
+      {% for object in company_objects %}
+        <option  value="{{object.id}}">{{object.ticker}}</option>
+      {% endfor %}
+  </select>
+
+
+<div id="stock-chart">
+
+</div>
+
+<br>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h4 id='name' class="lead display-3">Please select a company for its information!</h4>
+    <p id='description' class="lead"></p>
+    <p id='gics_sector' class="lead"></p>
+    <p id='gics_industry' class="lead"></p>
+    <p id='gics_industry_group' class="lead"></p>
+    <p id='gics_sub_industry_group' class="lead"></p>
+  </div>
+</div>
+</div>
+
+{% endblock %}

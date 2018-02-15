@@ -1,0 +1,166 @@
+{% extends "stocksapp/base.html" %}
+
+{% block content %}
+<input type="hidden" id = 'tickers-list' name="" value="{{tickers_list}}">
+<script type='text/javascript'>
+            var company_list = $('#tickers-list').val().split(',');
+            var i = 0;
+            function addFields(){
+                // Number of inputs to create
+                // Container <div> where dynamic content will be placed
+                var container = document.getElementById("container");
+
+                    var row = document.createElement("div");
+
+                    row.className = "col-xs-6"
+                    // Create an <input> element, set its type and name attributes
+                    var companyName = document.createElement("select");
+                    companyName.className = "form-control form-control-lg";
+                    companyName.type = "text";
+                    companyName.name = "select" + i;
+                    companyName.onChange = function (ev) {
+                        remove(company_list, companyName.options[companyName.selectedIndex].value);
+                    }
+                    row.appendChild(companyName);
+
+                    company_list.forEach(function(element) {
+                        var el = document.createElement("option");
+                        el.textContent = element;
+                        el.value = element;
+                        companyName.appendChild(el);
+                    });
+
+                    // Create an <input> element, set its type and name attributes
+                    var percentage = document.createElement("input");
+                    percentage.className = "col-xs-6";
+                    percentage.type = "number";
+                    percentage.name = "percent" + (i);
+                    row.appendChild(percentage);
+
+                    i = i +1;
+
+                    var remove = document.createElement("button");
+                    remove.type = "button";
+                    remove.className = "btn btn-default btn-sm";
+                    remove.onclick = function (ev) { container.removeChild(row); };
+                    var temp = document.createElement("span");
+                    temp.className = "glyphicon glyphicon-remove";
+                    remove.appendChild(temp);
+                    row.appendChild(remove);
+
+                    row.appendChild(document.createElement("br"));
+                    row.appendChild(document.createElement("br"));
+                    container.appendChild(row);
+
+            }
+        </script>
+
+
+
+
+
+       <!-- Add your site or application content here -->
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+
+
+        <br>
+        <br>
+        <br>
+
+      <div class="form-group">
+        <form id = 'portfolio-create' action="{% url 'stocksapp:portfolio_insert' %}" method='POST'>
+            {% csrf_token %}
+            Portfolio Name : <input class="form-control" type="text" id="portfolioName" name="portfolioName" required>
+            <div id="message"></div>
+            </br>
+            <button type="button" class="btn btn-primary" onclick="addFields()">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <br>
+            <br>
+            <div id="container"></div>
+
+            <input id="custom_portfolio" name="custom_portfolio" hidden >
+            <button type="button" class="btn btn-primary" id="submit_portfolio">Create Portfolio</button>
+
+        </form>
+
+      </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#submit_portfolio").on('click', function (e) {
+                    e.preventDefault();
+                    if($('#portfolioName').val().length == 0){
+                      alert('Please mention a name');
+                      return;
+                    }
+                    var arr=[];
+                    var percentage = [];
+                    var st = {};
+                    var total = 0;
+                    var flag = false;
+                    $("select option:selected").each(function()
+                    {
+                        if(arr.indexOf($(this).val()) !== -1){
+                            alert("Same values selected");
+                            flag = true;
+                            return;
+                        }
+
+                        var temp_percentage = $(this).parent().parent().children('input').val();
+                        total += parseInt(temp_percentage);
+                        console.log(total);
+                        percentage.push(temp_percentage);
+                        arr.push($(this).val());
+
+                        st[$(this).val()] = temp_percentage;
+
+
+                    });
+                    if(total != 100 && !flag){
+                        alert('Total weights should sum to 100');
+                    }
+                    else if(!flag){
+                      console.log(st);
+
+                      $('#custom_portfolio').val(JSON.stringify(st));
+                      $('#portfolio-create').submit();
+                    }
+
+
+                });
+            });
+
+
+            $("#portfolioName").on('keyup',function(){
+                if($(this).val().trim().length > 0){
+                  $.ajax({url: "../check_portfolio_name/"+$(this).val(), success: function(result){
+                          // var message_div  = document.getElementById('message');
+                          $('#message').empty();
+
+                          if(result=='True'){
+
+                              $('<p class="green">This portfolio name is available</p>').appendTo($('#message'));
+                          }
+                          else{
+                              $('<p class="red">This portfolio name is not available</p>').appendTo($('#message'));
+                          }
+                          // var message_div = $('#message').insertAfter()
+                      }});
+                }
+                else{
+                  $('#message').empty();
+                }
+
+            });
+
+
+        </script>
+{% endblock %}
+
