@@ -1,0 +1,11 @@
+{% extends "stocksapp/base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+<h4>Upload New Data</h4>
+<form method="POST" enctype="multipart/form-data" action="{% url 'stocksapp:upload_csv' %}" id="upload-form">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	<input type="submit" value="Upload" class="upload btn btn-primary btn-large">
+</form>
+{% endblock %}

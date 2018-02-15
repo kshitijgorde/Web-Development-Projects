@@ -1,0 +1,32 @@
+{% extends "stocksapp/base.html" %}
+
+{% block content %}
+<div class="container">
+  <h2>Please select a company for its information!</h2>
+  <select class="ticker" name="" id='companytickers'>
+      {% for object in company_objects %}
+        <option  value="{{object.id}}">{{object.ticker}}</option>
+      {% endfor %}
+  </select>
+  <p id="company-details">
+
+  </p>
+</div>
+
+
+<!-- <script>
+    function showCompanyDetails() {
+      let company_id = document.getElementById('companytickers').value;
+      alert(company_id);
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange=function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById('company-details').innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "{% url 'stocksapp:company_overview' pk=1 %}" , true);
+      xhttp.send();
+    }
+</script> -->
+
+{% endblock %}
