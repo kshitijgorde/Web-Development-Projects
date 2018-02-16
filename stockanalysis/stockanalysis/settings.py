@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import os
 import sys
-import urlparse
+#import urlparse
 
 # Register database schemes in URLs.
 
@@ -87,9 +87,8 @@ WSGI_APPLICATION = 'stockanalysis.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'stocks_portfolio',
-        'DATABASE':'heroku_a41f9f770d3c101',
+         'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'heroku_a41f9f770d3c101',
         'USER': 'bf4594571a6157',
         'PASSWORD': 'bdf9962d',
         'HOST': 'us-cdbr-iron-east-05.cleardb.net',
