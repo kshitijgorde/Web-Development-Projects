@@ -84,40 +84,6 @@ WSGI_APPLICATION = 'stockanalysis.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-# urlparse.uses_netloc.append('mysql')
-#
-# try:
-#
-#     # Check to make sure DATABASES is set in settings.py file.
-#     # If not default to {}
-#
-#     if 'DATABASES' not in locals():
-#         DATABASES = {}
-#
-#     if 'DATABASE_URL' in os.environ:
-#         url = urlparse.urlparse(os.environ['DATABASE_URL'])
-#
-#         # Ensure default database exists.
-#         DATABASES['default'] = DATABASES.get('default', {})
-#
-#         # Update with environment configuration.
-#         DATABASES['default'].update({
-#             'NAME': url.path[1:],
-#             'USER': url.username,
-#             'PASSWORD': url.password,
-#             'HOST': url.hostname,
-#             'PORT': url.port,
-#         })
-#
-#         if url.scheme == 'mysql':
-#             DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-# except Exception:
-#     print('Unexpected error:', sys.exc_info())
-#
-# DATABASES['default'] = dj_database_url.config(default='mysql://kshitijgorde@127.0.0.1/stocks_portfolio')
-# DATABASES['default']['OPTIONS'] = {
-#     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-# }
 
 DATABASES = {
     'default': {
@@ -130,28 +96,6 @@ DATABASES = {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'heroku_a41f9f770d3c101',
-#         'USER': 'bf4594571a6157',
-#         'PASSWORD': 'bdf9962d',
-#         'HOST': 'us-cdbr-iron-east-05.cleardb.net',
-#         'PORT': '3306',
-#     }
-# }
-# import dj_database_url
-# DATABASES['default'] =  dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
