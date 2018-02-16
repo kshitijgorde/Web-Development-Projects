@@ -30,7 +30,7 @@ SECRET_KEY = 'm1wrv4c1ove4_t+q9g=wx6!^*g@4@_#*(x_98s5w7k=u7o1a_i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['capitech.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['capitech.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -95,8 +95,8 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+# import dj_database_url
+# DATABASES['default'] =  dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
