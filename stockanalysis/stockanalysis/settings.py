@@ -114,7 +114,7 @@ try:
 except Exception:
     print('Unexpected error:', sys.exc_info())
 
-DATABASES['default'] = dj_database_url.config(default='mysql://root:root@127.0.0.1:3306/stocks_portfolio')
+DATABASES['default'] = dj_database_url.config(default='mysql://kshitijgorde@127.0.0.1/stocks_portfolio')
 DATABASES['default']['OPTIONS'] = {
     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
 }
