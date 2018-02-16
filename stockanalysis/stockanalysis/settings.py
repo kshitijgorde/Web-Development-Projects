@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import os
 import sys
-#import urlparse
+from urllib import parse as urlparse
 
 # Register database schemes in URLs.
 
@@ -30,7 +30,7 @@ SECRET_KEY = 'm1wrv4c1ove4_t+q9g=wx6!^*g@4@_#*(x_98s5w7k=u7o1a_i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['capitech.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['capitech.herokuapp.com', '127.0.0.1','*']
 
 
 # Application definition
@@ -112,7 +112,7 @@ try:
         if url.scheme == 'mysql':
             DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
 except Exception:
-    print 'Unexpected error:', sys.exc_info()
+    print('Unexpected error:', sys.exc_info())
 
 DATABASES['default'] = dj_database_url.config(default='mysql://root:root@127.0.0.1:3306/stocks_portfolio')
 DATABASES['default']['OPTIONS'] = {
