@@ -87,8 +87,9 @@ WSGI_APPLICATION = 'stockanalysis.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'django.db.backends.mysql',
         'NAME': 'stocks_portfolio',
+        'DATABASE':'heroku_a41f9f770d3c101',
         'USER': 'bf4594571a6157',
         'PASSWORD': 'bdf9962d',
         'HOST': 'us-cdbr-iron-east-05.cleardb.net',
