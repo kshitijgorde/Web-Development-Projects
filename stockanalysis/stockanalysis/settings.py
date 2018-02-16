@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'stockanalysis.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'heroku_a41f9f770d3c101',
         'USER': 'bf4594571a6157',
         'PASSWORD': 'bdf9962d',
@@ -95,7 +95,8 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
