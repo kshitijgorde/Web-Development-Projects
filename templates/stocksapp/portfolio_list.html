@@ -1,0 +1,25 @@
+{% extends "stocksapp/base.html" %}
+
+{% block portflioList %}
+
+  {% if portfolio_list %}
+        <table class='table table-dark table-striped table-bordered table-hover'>
+                    <thead class='thead-light'>
+                      <tr>
+                        <th scope="col">Portfolio Name</th>
+                      </tr>
+                    </thead>
+
+
+                    {% for portfolio in portfolio_list %}
+                    <tr>
+                      <td scope="row"><a href="{% url 'stocksapp:portfolio_performance_page' pk=portfolio.portfolio_id%}">{{portfolio.portfolio_name}}</a></td>
+                    </tr>
+                    {% endfor %}
+          </table>
+  {% else %}
+    <h2>You have no saved portfolios.</h2>
+  {% endif %}
+
+  <a class='btn btn-lg btn-primary' href="{% url 'stocksapp:create_portfolio' %}">Create New Portfolio</a>
+{% endblock %}

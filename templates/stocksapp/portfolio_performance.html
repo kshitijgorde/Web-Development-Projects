@@ -1,0 +1,277 @@
+{% extends "stocksapp/base.html" %}
+
+
+{% block content %}
+<input type="hidden" id='portfolio-id' value={{portfolioID}}>
+
+<div id="portfolio-performance-chart">
+
+</div>
+
+<div id="portfolio-pie-chart">
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $.getJSON('../portfolio_performance/'+$('#portfolio-id').val(), function (data) {
+
+      // Create the chart
+
+      var splits = data['Splits'];
+      var split_dict = []
+        console.log(splits);
+      k=0;
+
+      Object.keys(splits).forEach(function(key) {
+        split_dict.push({
+            name:   key,
+            y: splits[key]
+        });
+        console.log(key, splits[key]);
+      });
+
+
+
+
+      console.log(split_dict);
+
+      var performances = [],
+          dataLength = data['PerformanceOvertime'].length,
+
+          // set the allowed units for data grouping
+          groupingUnits = [[
+              'week',                         // unit name
+              [1]                             // allowed multiples
+          ], [
+              'month',
+              [1, 2, 3, 4, 6]
+          ]],
+
+          i = 0;
+
+      for (i; i < dataLength; i += 1) {
+          performances.push([
+              Date.parse(data['PerformanceOvertime'][i][0]), // the date
+              data['PerformanceOvertime'][i][1] // overtime
+          ]);
+
+      }
+
+      console.log(performances);
+
+
+      //0--------- PIE CHART
+      Highcharts.chart('portfolio-pie-chart', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Your Portfolio is divided as follows'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: split_dict
+    }]
+});
+
+
+
+
+
+      //-------------------
+
+
+
+
+
+      var chart = Highcharts.stockChart('portfolio-performance-chart', {
+
+          chart: {
+              height: 400
+          },
+
+          title: {
+              text: 'Portfolio Manager'
+          },
+
+          subtitle: {
+              text: 'Your Portfolio Performance overtime'
+          },
+
+          rangeSelector: {
+              selected: 5
+          },
+
+          series: [{
+              name: 'performance',
+              data: performances,
+              type: 'area',
+              threshold: null,
+              tooltip: {
+                  valueDecimals: 2
+              }
+          }//, {
+        // type: 'spline',
+        // name: 'Average',
+        // data: [3, 2.67, 3, 6.33, 3.33,20,100],
+        // marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        // }
+    //}
+  ],
+
+          responsive: {
+              rules: [{
+                  condition: {
+                      maxWidth: 500
+                  },
+                  chartOptions: {
+                      chart: {
+                          height: 300
+                      },
+                      subtitle: {
+                          text: null
+                      },
+                      navigator: {
+                          enabled: false
+                      }
+                  }
+              }]
+          }
+      });
+
+
+      $('#small').click(function () {
+          chart.setSize(400);
+      });
+
+      $('#large').click(function () {
+          chart.setSize(800);
+      });
+
+      $('#auto').click(function () {
+          chart.setSize(null);
+      });
+  });
+
+
+
+});
+//   console.log($('#portfolio-id').val());
+//   $.getJSON('../portfolio_performance/'+$('#portfolio-id').val(), function (data) {
+//       // split the data set into ohlc and volume
+//           var performance_overtime = [],
+//           dataLength = data.length,
+//           // set the allowed units for data grouping
+//
+//
+//           i = 0;
+//
+//       for (i; i < dataLength; i += 1) {
+//           performance_overtime.push([
+//               data[i]
+//           ]);
+//
+//       }
+//
+//
+//       // create the chart
+//       var chart = Highcharts.stockChart('stock-chart', {
+//
+//
+//           title: {
+//               text: 'Stocks Data'
+//           },
+//
+//           yAxis: [{
+//               labels: {
+//                   align: 'right',
+//                   x: -3
+//               },
+//               title: {
+//                   text: 'Price'
+//               },
+//               height: '60%',
+//               lineWidth: 2,
+//               resize: {
+//                   enabled: true
+//               }
+//           }, {
+//               labels: {
+//                   align: 'right',
+//                   x: -3
+//               },
+//               title: {
+//                   text: 'Volume'
+//               },
+//               top: '65%',
+//               height: '35%',
+//               offset: 0,
+//               lineWidth: 2
+//           }],
+//
+//           tooltip: {
+//               split: true
+//           },
+//
+//           series: [{
+//               type: 'area',
+//               name: $('#companytickers option:selected').text(),
+//               data: performance_overtime,
+//               dataGrouping: {
+//                   units: groupingUnits
+//               }
+//           },
+//           // responsive: {
+//           //     rules: [{
+//           //         condition: {
+//           //             maxWidth: 500
+//           //         },
+//           //         chartOptions: {
+//           //             chart: {
+//           //                 height: 400
+//           //             },
+//           //             subtitle: {
+//           //                 text: null
+//           //             },
+//           //             navigator: {
+//           //                 enabled: false
+//           //             }
+//           //         }
+//           //     }]
+//           }
+//
+//        });
+//
+//
+//   });
+// });
+
+
+
+</script>
+
+{% endblock %}

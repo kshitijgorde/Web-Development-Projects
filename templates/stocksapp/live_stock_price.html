@@ -1,0 +1,38 @@
+{% extends "stocksapp/base.html" %}
+
+
+{% block content %}
+<div class="container">
+  <h4>Please select a ticker from the list</h4>
+  <select class="form-control form-control-lg liveTicker" name="" id='liveTicker'>
+      <option value='invalid'>Select Ticker</option>
+      {% for object in company_objects %}
+        <option  value="{{object.ticker}}">{{object.ticker}}</option>
+      {% endfor %}
+  </select>
+<br>
+<br>
+  <div id="live-stock-graph">
+
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Loading Live Data</h4>
+      </div>
+      <div class="modal-body">
+        Your Data will load shortly. Please wait!
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

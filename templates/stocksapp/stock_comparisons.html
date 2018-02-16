@@ -1,0 +1,40 @@
+{% extends "stocksapp/base.html" %}
+
+{% block content %}
+<div class="container">
+
+  <h3>Please select two tickers</h3>
+  <div class="row">
+    <div class="col-xs-6">
+      <select class="form-control form-control-lg col-xs-6 ticker-analysis-companyA" name="" id='tickerA'>
+          <option value='invalid'>Select Ticker</option>
+          {% for object in company_objects %}
+            <option  value="{{object.id}}">{{object.ticker}}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+    <div class="col-xs-6">
+      <select class="form-control form-control-lg tickerB" name="" id='tickerB'>
+          <option value='invalid'>Select Ticker</option>
+          {% for object in company_objects %}
+            <option  value="{{object.id}}">{{object.ticker}}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+
+  </div>
+
+
+
+  <div class="container" >
+    <p id="company-details"></p>
+  </div>
+
+<div id="stock-chart-comparisons">
+
+</div>
+</div>
+
+{% endblock %}
