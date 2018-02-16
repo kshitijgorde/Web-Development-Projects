@@ -84,39 +84,50 @@ WSGI_APPLICATION = 'stockanalysis.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-urlparse.uses_netloc.append('mysql')
+# urlparse.uses_netloc.append('mysql')
+#
+# try:
+#
+#     # Check to make sure DATABASES is set in settings.py file.
+#     # If not default to {}
+#
+#     if 'DATABASES' not in locals():
+#         DATABASES = {}
+#
+#     if 'DATABASE_URL' in os.environ:
+#         url = urlparse.urlparse(os.environ['DATABASE_URL'])
+#
+#         # Ensure default database exists.
+#         DATABASES['default'] = DATABASES.get('default', {})
+#
+#         # Update with environment configuration.
+#         DATABASES['default'].update({
+#             'NAME': url.path[1:],
+#             'USER': url.username,
+#             'PASSWORD': url.password,
+#             'HOST': url.hostname,
+#             'PORT': url.port,
+#         })
+#
+#         if url.scheme == 'mysql':
+#             DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+# except Exception:
+#     print('Unexpected error:', sys.exc_info())
+#
+# DATABASES['default'] = dj_database_url.config(default='mysql://kshitijgorde@127.0.0.1/stocks_portfolio')
+# DATABASES['default']['OPTIONS'] = {
+#     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+# }
 
-try:
-
-    # Check to make sure DATABASES is set in settings.py file.
-    # If not default to {}
-
-    if 'DATABASES' not in locals():
-        DATABASES = {}
-
-    if 'DATABASE_URL' in os.environ:
-        url = urlparse.urlparse(os.environ['DATABASE_URL'])
-
-        # Ensure default database exists.
-        DATABASES['default'] = DATABASES.get('default', {})
-
-        # Update with environment configuration.
-        DATABASES['default'].update({
-            'NAME': url.path[1:],
-            'USER': url.username,
-            'PASSWORD': url.password,
-            'HOST': url.hostname,
-            'PORT': url.port,
-        })
-
-        if url.scheme == 'mysql':
-            DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-except Exception:
-    print('Unexpected error:', sys.exc_info())
-
-DATABASES['default'] = dj_database_url.config(default='mysql://kshitijgorde@127.0.0.1/stocks_portfolio')
-DATABASES['default']['OPTIONS'] = {
-    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'stocks_portfolio',
+        'USER': 'kshitijgorde',
+        'PASSWORD': 'kshitijgorde',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 
