@@ -2,7 +2,9 @@
 {% load bootstrap3 %}
 
 {% block content %}
-<h4>Upload New Data</h4>
+<h2>Upload New Data</h2>
+<p class="lead">The CSV format for Company data is:[Ticker, Name, Description, Sector, Industry, IndustryGroup, SubIndustryGroup]</p>
+<p class="lead">The CSV format for Stock data is(filename should be same as Ticker): [Date,ClosingPrice,Volume]</p>
 <form method="POST" enctype="multipart/form-data" action="{% url 'stocksapp:upload_csv' %}" id="upload-form">
 	<div class="form-group">
 		{% csrf_token %}

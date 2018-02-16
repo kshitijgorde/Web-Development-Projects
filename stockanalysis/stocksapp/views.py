@@ -82,11 +82,11 @@ def purge_database(request):
     ''' Caution!: Deletes all items from the database. Only valid on POST request '''
     if request.method == 'POST':
         #Purge the database
-        Portfolio.objects.all().delete()
-        PortfolioCompanies.objects.all().delete()
-        Company.objects.all().delete()
-        StockData.objects.all().delete()
-        return HttpResponse('Deleted Successfully!')
+        # Portfolio.objects.all().delete()
+        # PortfolioCompanies.objects.all().delete()
+        # Company.objects.all().delete()
+        # StockData.objects.all().delete()
+        return redirect('/')
 
     return HttpResponse('error')
 
